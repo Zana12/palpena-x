@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 const config = require('./config.json');
 const client = new Discord.Client();
 
-const token = process.env.DISCORD_TOKEN;
+const token = config.token;
 const prefix = config.prefix;
 const fs = require('fs');
 client.commands = new Discord.Collection();
@@ -11,22 +11,18 @@ const commandFiles = fs.readdirSync('./commands/').filter(file => file.endsWith(
 for (const file of commandFiles) {
 	const command = require(`./commands/${file}`);
 	client.commands.set(command.name, command)
+	console.log(client.commands.set(command.name, command))
 }
 
 client.once('ready', () => {
-    client.user.setStatus('available');
-    client.user.setPresence({
-        game: {
-            name: 'Palpena X Bot',
-            type: "PLAYING"
-        }
-    });
+	client.user.setActivity('Palpena X Bot', { type: 'PLAYING' })
 	console.log('Ready Sir!');
 });
 client.on('guildMemberAdd', member => {
 	const channel = member.guild.channels.cache.find(ch => ch.name === 'moderations');
 	if (!channel) return;
 	channel.send(`Welcome to the server, ${member}`);
+	console.log(`${member} Joined.`);
 });
 
 client.on('message', async message => {
