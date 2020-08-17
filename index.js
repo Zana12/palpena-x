@@ -17,7 +17,7 @@ client.once('ready', () => {
     client.user.setStatus('available');
     client.user.setPresence({
         game: {
-            name: 'Palpena X',
+            name: 'Palpena X Bot',
             type: "PLAYING"
         }
     });
