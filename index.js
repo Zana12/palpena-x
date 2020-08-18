@@ -19,7 +19,7 @@ client.once('ready', () => {
 	console.log('Ready Sir!');
 });
 client.on('guildMemberAdd', member => {
-	const channel = member.guild.channels.cache.find(ch => ch.name === 'moderations');
+	const channel = member.guild.channels.cache.find(ch => ch.name === 'members-data');
 	if (!channel) return;
 
 	if (member.presence.status === 'dnd') member.presence.status = ':red_circle: DnD';
@@ -28,10 +28,6 @@ client.on('guildMemberAdd', member => {
 	if (member.presence.status === 'offline') member.presence.status = ':white_circle: Offline';
 
 	let x = Date.now() - member.createdAt;
-	let y = Date.now() - member.guild.members.cache.get(member.id).joinedAt;
-	const joined = Math.floor(y / 86400000);
-
-	const joineddate = moment.utc(member.joinedAt).format("dddd, MMMM Do YYYY, HH:mm:ss");
 	let status = member.presence.status;
 	const embed = {
 		"color": 0x2091ff,
@@ -47,7 +43,7 @@ client.on('guildMemberAdd', member => {
 			"name": member.user.tag,
 			"icon_url": member.user.displayAvatarURL()
 		},
-		"description" : `**Profile:** ${member.user.tag} \n**Status**: ${status} \n**ID:** ${member.id} \n**Created:** ${moment.utc(member.user.createdAt).format("dddd, MMMM Do YYYY")} \n **Joined:** ${joineddate} \n **${joined}** day(s) ago \n**Roles:** <@&${member._roles.join('> <@&')}> \n [Avatar URL](${member.user.displayAvatarURL()})`
+		"description" : `**Profile:** ${member.user.tag} \n**Status**: ${status} \n**ID:** ${member.id} \n**Created:** ${moment.utc(member.user.createdAt).format("dddd, MMMM Do YYYY")} \n[Avatar URL](${member.user.displayAvatarURL()})`
 	};
 	channel.send(`${member}, Joined to the server`, {embed});
 	console.log(`${member} Joined.`);
