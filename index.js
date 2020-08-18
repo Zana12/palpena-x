@@ -21,7 +21,23 @@ client.once('ready', () => {
 client.on('guildMemberAdd', member => {
 	const channel = member.guild.channels.cache.find(ch => ch.name === 'moderations');
 	if (!channel) return;
-	channel.send(`Welcome to the server, ${member}`);
+	const embed = {
+		"color": 0x2091ff,
+		"timestamp": new Date(),
+		"footer": {
+			"icon_url": config.logo,
+			"text": config.bot_name
+		},
+		"thumbnail": {
+			"url": member.user.displayAvatarURL()
+		},
+		"author": {
+			"name": member.user.tag,
+			"icon_url": member.user.displayAvatarURL()
+		},
+		"description" : `**ID:** ${member.id}`
+	};
+	channel.send(`Welcome to the server, ${member}`, {embed});
 	console.log(`${member} Joined.`);
 });
 
