@@ -28,7 +28,7 @@ client.on('guildMemberAdd', member => {
 	if (member.presence.status === 'offline') member.presence.status = ':white_circle: Offline';
 
 	let x = Date.now() - member.createdAt;
-	let y = Date.now() - message.guild.members.cache.get(member.id).joinedAt;
+	let y = Date.now() - member.guild.members.cache.get(member.id).joinedAt;
 	const joined = Math.floor(y / 86400000);
 
 	const joineddate = moment.utc(member.joinedAt).format("dddd, MMMM Do YYYY, HH:mm:ss");
