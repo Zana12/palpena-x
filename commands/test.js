@@ -1,6 +1,6 @@
 module.exports = {
 	name: 'ping',
-	description: 'Miscellaneous',
+	description: 'Test Purposes',
 	execute(message, args) {
 		message.channel.send("Here is new Heroku!")
 	},
