@@ -1,5 +1,6 @@
 const config = require('./../config.json');
 const Canvas = require('canvas');
+const image = require('./../palpena.png');
 module.exports = {
 	name: 'canva',
 	description: 'Test Purposes',
@@ -8,7 +9,7 @@ module.exports = {
         const canvas = Canvas.createCanvas(700, 250);
         const ctx = canvas.getContext('2d');
 
-        const background = await Canvas.loadImage('./../wallpaper.png');
+        const background = await Canvas.loadImage(image);
         ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 
         ctx.strokeStyle = '#74037b';
