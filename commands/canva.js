@@ -1,3 +1,5 @@
+const config = require('./../config.json');
+const Canvas = require('canvas');
 module.exports = {
 	name: 'canva',
 	description: 'Test Purposes',
@@ -28,6 +30,6 @@ module.exports = {
         ctx.drawImage(avatar, 25, 25, 200, 200);
 
         const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'welcome-image.png');
-		message.channel.send(`Welcome to the server, ${member}!`, attachment)
+		message.channel.send(attachment)
 	},
 };
