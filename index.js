@@ -2,7 +2,6 @@ const Discord = require('discord.js');
 const config = require('./config.json');
 const client = new Discord.Client();
 const moment = require('moment');
-const DB = require("mongoose");
 
 
 const token = process.env.DISCORD_TOKEN;
@@ -14,7 +13,6 @@ const commandFiles = fs.readdirSync('./commands/').filter(file => file.endsWith(
 for (const file of commandFiles) {
 	const command = require(`./commands/${file}`);
 	client.commands.set(command.name, command)
-	console.log(client.commands.set(command.name, command))
 }
 
 client.once('ready', () => {
@@ -66,30 +64,6 @@ client.on('message', async message => {
 		console.error(error);
 		message.reply('there was an error trying to execute that command!');
 	}
-
-	const dbOptions = {
-		useNewUrlParser: true,
-		useUnifiedTopology: true,
-		autoIndex: false,
-		reconnectTries: Number.MAX_VALUE,
-		reconnectInterval: 500,
-		poolSize: 5,
-		connectTimeoutMS: 10000,
-		family: 4
-	}
-	const dbCredentials = process.env.mongoCRD;
-	DB.connect(dbCredentials, dbOptions);
-	DB.set('useFindAndModify', flase);
-	DB.Promise = global.Promise;
-	DB.connection.on('connected', () => {
-		console.log('Mongoose has successfully connected');
-	});
-	DB.connection.on('err', err => {
-		console.log(`Mongoose connection error: \n${err.stack}`);
-	});
-	DB.connection.on('disconnected', () => {
-		console.warn('Mongoose connection lost');
-	});
 });
 
 client.login(token);
