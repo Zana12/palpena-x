@@ -48,13 +48,13 @@ client.on('guildMemberAdd', member => {
 		"description" : `**Profile:** ${member.user.tag} \n**Status**: ${status} \n**ID:** ${member.id} \n**Created:** ${moment.utc(member.user.createdAt).format("dddd, MMMM Do YYYY")} \n[Avatar URL](${member.user.displayAvatarURL()})`
 	};
 	channel.send(`${member}, Joined to the server`, {embed});
-	console.log(`${member.username} Joined.`);
+	console.log(`${member.user.tag} Joined.`);
 	const role = member.guild.roles.cache.find(role => role.name === 'Members');
 	member.roles.add(role);
 	if(member.roles.add(role)) {
-		console.log(`${member.username} got role successfully`)
+		console.log(`${member.user.tag} got role successfully`);
 	} else {
-		console.log(`${member.username} doesn't got the role!`)
+		console.log(`${member.user.tag} doesn't got the role!`);
 	}
 });
 
