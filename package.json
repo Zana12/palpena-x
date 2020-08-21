@@ -12,8 +12,6 @@
   "dependencies": {
     "discord.js": "^12.2.0",
     "dotenv": "^8.2.0",
-    "firebase": "^7.15.5",
-    "firebase-admin": "^8.13.0",
     "glob": "^7.1.6",
     "moment": "^2.27.0",
     "mongoose": "^5.10.0",
