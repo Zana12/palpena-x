@@ -2,10 +2,10 @@ module.exports = {
 	name: 'ban',
 	description: 'Ban users from your server',
 	execute(message, args) {
-        if (!message.member.hasPermission("ADMINSTRATOR")) return message.channel.send("Invalid Permissions")
+        if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send("Invalid Permissions")
         let User = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0])
         if (!User) return message.channel.send("Invalid User")
-        if (User.hasPermission("ADMINSTRATOR")) return message.reply("Invalid Permissions")
+        if (User.hasPermission("ADMINISTRATOR")) return message.reply("Invalid Permissions")
         let banReason = args.join(" ").slice(22);
         if (!banReason) {
           banReason = "None"
