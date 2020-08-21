@@ -50,11 +50,12 @@ client.on('guildMemberAdd', member => {
 	const role = member.guild.roles.cache.find(role => role.name === 'Members');
 	member.roles.add(role);
 	if(member.roles.add(role)) {
-		let roleStatus = ":white_check_mark:";
+		let roleStatus_X = ":white_check_mark:";
+		channel.send(`${member}, Joined to the server \n Role Status = ${roleStatus_X}`, {embed});
 	} else {
-		let roleStatus = ":warning:";
-	}
-	channel.send(`${member}, Joined to the server \n Role Status = ${roleStatus}`, {embed});
+		let roleStatus_Y = ":warning:";
+		channel.send(`${member}, Joined to the server \n Role Status = ${roleStatus_Y}`, {embed});
+	}	
 	console.log(`${member.user.tag} Joined.`);
 });
 
