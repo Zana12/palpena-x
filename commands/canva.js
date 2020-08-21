@@ -1,5 +1,5 @@
 const config = require('./../config.json');
-const Canvas = require('canvas');
+const {Canvas, registerFont} = require('canvas');
 const Discord = require("discord.js");
 let image = "https://res.cloudinary.com/zanakarzan/image/upload/v1598032825/snqrcytz6xq4voqrxbbm.png";
 module.exports = {
@@ -7,7 +7,7 @@ module.exports = {
 	description: 'Test Purposes',
 	async execute(message, args) {
         let member = message.mentions.members.first() || message.guild.members.cache.get(userArgs[0]) || message.guild.members.cache.find(x => x.user.username.toLowerCase() === userArgs.slice(0).join(" ") || x.user.username === userArgs[0]) || message.member;
-        const canvas = Canvas.createCanvas(700, 250);
+        const canvas = Canvas.createCanvas(700, 346);
         const ctx = canvas.getContext('2d');
 
         const background = await Canvas.loadImage(image);
@@ -17,7 +17,8 @@ module.exports = {
         ctx.strokeRect(0, 0, canvas.width, canvas.height);
 
         // Select the font size and type from one of the natively available fonts
-        ctx.font = '60px sans-serif';
+        registerFont('https://res.cloudinary.com/zanakarzan/raw/upload/v1598033693/mwxhtfk4nfbdrllfmwg6.ttf', { family: 'Teko' })
+        ctx.font = '40px "Teko"';
         // Select the style that will be used to fill the text in
         ctx.fillStyle = '#ffffff';
         // Actually fill the text with a solid color
