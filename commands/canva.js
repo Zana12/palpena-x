@@ -1,5 +1,6 @@
 const config = require('./../config.json');
 const Canvas = require('canvas');
+const Discord = require("discord.js");
 let image = "https://res.cloudinary.com/zanakarzan/image/upload/v1598032825/snqrcytz6xq4voqrxbbm.png";
 module.exports = {
 	name: 'canva',
