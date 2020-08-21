@@ -4,7 +4,7 @@ module.exports = {
 	name: 'ban',
 	description: 'Ban users from your server',
 	async execute(message, args) {
-    let banned = message.mentions.users.first() || message.users.resolve(args[0]);
+    let banned = message.mentions.members.first() || message.guild.members.cache.get(userArgs[0]) || message.guild.members.cache.find(x => x.user.username.toLowerCase() === userArgs.slice(0).join(" ") || x.user.username === userArgs[0]) || message.member;
     let reason = args.slice(1).join(" ");
     if (!args.length) return message.channel.send(`:warning: **Usage:** \`${config.prefix}ban <mention> <reason>\``);
     if (message.author === banned) {
