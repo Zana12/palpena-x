@@ -13,10 +13,11 @@ const commandFiles = fs.readdirSync('./commands/').filter(file => file.endsWith(
 for (const file of commandFiles) {
 	const command = require(`./commands/${file}`);
 	client.commands.set(command.name, command)
+	console.log(`${file} loaded`);
 }
 
 client.once('ready', () => {
-	client.user.setActivity(`b${config.prefix} | Palpena Bot`, { type: 'PLAYING' })
+	client.user.setActivity(`b${prefix} | Palpena Bot`, { type: 'PLAYING' })
 	console.log('Ready Sir!');
 });
 client.on('guildMemberAdd', member => {
