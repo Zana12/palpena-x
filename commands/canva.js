@@ -1,7 +1,7 @@
 module.exports = {
 	name: 'canva',
 	description: 'Test Purposes',
-	execute(message, args) {
+	async execute(message, args) {
         let member = message.mentions.members.first() || message.guild.members.cache.get(userArgs[0]) || message.guild.members.cache.find(x => x.user.username.toLowerCase() === userArgs.slice(0).join(" ") || x.user.username === userArgs[0]) || message.member;
         const canvas = Canvas.createCanvas(700, 250);
         const ctx = canvas.getContext('2d');
