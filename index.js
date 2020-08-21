@@ -49,6 +49,9 @@ client.on('guildMemberAdd', member => {
 	};
 	channel.send(`${member}, Joined to the server`, {embed});
 	console.log(`${member} Joined.`);
+	let role = message.guild.roles.find(r => r.name === "Members");
+	member.addRole(role).catch(console.error);
+	if(member.addRole(role)) return console.log(`${member} got the ${role} successfully`);
 });
 
 client.on('message', async message => {
