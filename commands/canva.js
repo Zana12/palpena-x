@@ -63,6 +63,6 @@ module.exports = {
         ctx.drawImage(avatar, 25, 25, 200, 200);
 
         const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'member-information-image.png');
-		message.channel.send(`> **ROLES:** <@&${member._roles.join('> <@&')}> \n > **ID:** ${member.id}`, attachment)
+		message.channel.send(`> **ID:** ${member.id}`, attachment)
 	},
 };
