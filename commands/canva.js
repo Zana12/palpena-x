@@ -30,27 +30,28 @@ module.exports = {
 
         // informations
         ctx.font = 'bold 22px sans-serif';
+        ctx.fillStyle = '#ffffff';
         ctx.fillText('Member Informations card', canvas.width / 2.9, canvas.height / 6.7);
 
-        ctx.font = '22px sans-serif';
+        ctx.font = '22px sans-serif';ctx.fillStyle = '#ffffff';
         ctx.fillText('Profile:', canvas.width / 2.9, canvas.height / 3.4);
         ctx.fillText(`${member.displayName}`, canvas.width / 2.1, canvas.height / 3.4);
 
-        ctx.font = '22px sans-serif';
+        ctx.font = '22px sans-serif';ctx.fillStyle = '#ffffff';
         ctx.fillText('Status:', canvas.width / 2.9, canvas.height / 2.6);
         ctx.fillText(`${status}`, canvas.width / 2.1, canvas.height / 2.6);
 
-        ctx.font = '22px sans-serif';
+        ctx.font = '22px sans-serif';ctx.fillStyle = '#ffffff';
         ctx.fillText('ID:', canvas.width / 2.9, canvas.height / 2.03);
         ctx.fillText(`${member.id}`, canvas.width / 2.5, canvas.height / 2.03);
 
-        ctx.font = '22px sans-serif';
+        ctx.font = '22px sans-serif';ctx.fillStyle = '#ffffff';
         ctx.fillText('Created:', canvas.width / 2.9, canvas.height / 1.65);
         ctx.fillText(`${moment.utc(member.user.createdAt).format("dddd, MMMM Do YYYY")}`, canvas.width / 2.1, canvas.height / 1.65);
 
-        ctx.font = '22px sans-serif';
-        ctx.fillText('Joined:', canvas.width / 22, canvas.height / 1.02);
-        ctx.fillText(`${joineddate} ${joined} day(s) ago`, canvas.width / 6, canvas.height / 1.02);
+        ctx.font = '22px sans-serif';ctx.fillStyle = '#ffffff';
+        ctx.fillText('Joined:', canvas.width / 29, canvas.height / 1.02);
+        ctx.fillText(`${joineddate} ${joined} day(s) ago`, canvas.width / 7, canvas.height / 1.02);
 
         // Close Information
         ctx.beginPath();
