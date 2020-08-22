@@ -15,9 +15,6 @@ module.exports = {
 
         ctx.strokeStyle = '#74037b';
         ctx.strokeRect(0, 0, canvas.width, canvas.height);
-
-        // Select the font size and type from one of the natively available fonts
-        Canvas.registerFont('palpena.ttf', { family: 'Teko' });
         ctx.font = '40px "Teko"';
         // Select the style that will be used to fill the text in
         ctx.fillStyle = '#ffffff';
