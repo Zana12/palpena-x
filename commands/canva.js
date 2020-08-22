@@ -26,7 +26,7 @@ module.exports = {
         ctx.closePath();
         ctx.clip();
 
-        const avatar = await Canvas.loadImage(member.user.displayAvatarURL({ format: 'jpg' }));
+        const avatar = await Canvas.loadImage(member.user.displayAvatarURL());
         ctx.drawImage(avatar, 25, 25, 200, 200);
 
         const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'welcome-image.png');
