@@ -30,27 +30,27 @@ module.exports = {
 
         // informations
         ctx.font = 'bold 22px sans-serif';
-        ctx.fillText('Member Informations card', c.width / 2.9, c.height / 6.7);
+        ctx.fillText('Member Informations card', canvas.width / 2.9, canvas.height / 6.7);
 
         ctx.font = '22px sans-serif';
-        ctx.fillText('Profile:', c.width / 2.9, c.height / 3.4);
-        ctx.fillText(`${member.displayName}`, c.width / 2.1, c.height / 3.4);
+        ctx.fillText('Profile:', canvas.width / 2.9, canvas.height / 3.4);
+        ctx.fillText(`${member.displayName}`, canvas.width / 2.1, canvas.height / 3.4);
 
         ctx.font = '22px sans-serif';
-        ctx.fillText('Status:', c.width / 2.9, c.height / 2.6);
-        ctx.fillText(`${status}`, c.width / 2.1, c.height / 2.6);
+        ctx.fillText('Status:', canvas.width / 2.9, canvas.height / 2.6);
+        ctx.fillText(`${status}`, canvas.width / 2.1, canvas.height / 2.6);
 
         ctx.font = '22px sans-serif';
-        ctx.fillText('ID:', c.width / 2.9, c.height / 2.03);
-        ctx.fillText(`${member.id}`, c.width / 2.5, c.height / 2.03);
+        ctx.fillText('ID:', canvas.width / 2.9, canvas.height / 2.03);
+        ctx.fillText(`${member.id}`, canvas.width / 2.5, canvas.height / 2.03);
 
         ctx.font = '22px sans-serif';
-        ctx.fillText('Created:', c.width / 2.9, c.height / 1.65);
-        ctx.fillText(`${moment.utc(member.user.createdAt).format("dddd, MMMM Do YYYY")}`, c.width / 2.1, c.height / 1.65);
+        ctx.fillText('Created:', canvas.width / 2.9, canvas.height / 1.65);
+        ctx.fillText(`${moment.utc(member.user.createdAt).format("dddd, MMMM Do YYYY")}`, canvas.width / 2.1, canvas.height / 1.65);
 
         ctx.font = '22px sans-serif';
-        ctx.fillText('Joined:', c.width / 22, c.height / 1.02);
-        ctx.fillText(`${joineddate} ${joined} day(s) ago`, c.width / 6, c.height / 1.02);
+        ctx.fillText('Joined:', canvas.width / 22, canvas.height / 1.02);
+        ctx.fillText(`${joineddate} ${joined} day(s) ago`, canvas.width / 6, canvas.height / 1.02);
 
         // Close Information
         ctx.beginPath();
