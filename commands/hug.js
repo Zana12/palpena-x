@@ -6,7 +6,7 @@ module.exports = {
         if(!args[0]) {
             message.channel.send(`ئەوەی ئەتەوێ باوەشی پیاکەی تاگیکە هەناسە!`);
         } else {
-            message.channel.send(`!${taggedPerson.displayName} باوەشێکی گەرمی کرد بە ${message.author.username}`)
+            message.channel.send(`!${taggedPerson} باوەشێکی گەرمی کرد بە ${message.author}`)
         }
 	},
 };
