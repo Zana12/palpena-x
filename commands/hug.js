@@ -3,8 +3,7 @@ module.exports = {
 	description: 'Test Purposes',
 	execute(message, args) {
         const taggedPerson = message.mentions.members.first();
-
-        if(!args[1]) {
+        if(!args[0]) {
             message.channel.send(`ئەوەی ئەتەوێ باوەشی پیاکەی تاگیکە هەناسە!`);
         } else {
             message.channel.send(`!${taggedPerson.displayName} باوەشێکی گەرمی کرد بە ${message.author.username}`)
