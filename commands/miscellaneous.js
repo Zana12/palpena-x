@@ -36,7 +36,7 @@ module.exports = {
 					"name": member.user.tag,
 					"icon_url": member.user.displayAvatarURL()
 				},
-				"description" : `**Profile:** ${member.user.tag} \n**Status**: ${status} \n**ID:** ${member.id} \n**Created:** ${moment.utc(member.user.createdAt).format("dddd, MMMM Do YYYY")} \n **Joined:** ${joineddate} \n **${joined}** day(s) ago \n**Roles:** <@&${member._roles.join('> <@&')}> \n [Avatar URL](${member.user.displayAvatarURL()}?size=750)`
+				"description" : `**Profile:** ${member.user.tag} \n**Status**: ${status} \n**ID:** ${member.id} \n**Created:** ${moment.utc(member.user.createdAt).format("dddd, MMMM Do YYYY")} \n **Joined:** ${joineddate} \n **${joined}** day(s) ago \n**Roles:** <@&${member._roles.join('> <@&')}> \n [Avatar URL](${member.user.displayAvatarURL({ dynamic: true, size: 750})})`
 			};
 			return message.channel.send({embed});	
 		}
