@@ -37,7 +37,7 @@ module.exports = {
 					"icon_url": member.user.displayAvatarURL()
 				},
 				"image": {
-					"url": `${member.user.displayAvatarURL({size: 1024})}`
+					"url": `${member.user.displayAvatarURL()}?size=1024`
 				},
 				"description" : `**Profile:** ${member.user.tag} \n**Status**: ${status} \n**ID:** ${member.id} \n**Created:** ${moment.utc(member.user.createdAt).format("dddd, MMMM Do YYYY")} \n **Joined:** ${joineddate} \n **${joined}** day(s) ago \n**Roles:** <@&${member._roles.join('> <@&')}>`
 			};
