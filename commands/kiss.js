@@ -3,10 +3,8 @@ module.exports = {
 	description: 'Test Purposes',
 	execute(message, args) {
         const taggedPerson = message.mentions.members.first();
-        if(!args[1]) {
-            message.channel.send(`ئەوەی ئەتەوێ ماچی بکەی تاگی بکە!`);
-        } else {
-            message.channel.send(`!${message.author} **ماچی گوپی** ${taggedPerson} <:hug:747519226243448904>`)
-        }
+		if (!args.length) return message.channel.send(`ئەوەی ئەتەوێ باوەشی پیاکەی تاگیکە هەناسە!`);
+		message.delete(message.author);
+        message.channel.send(`${message.author} \n **ماچێکی گووپی ** \n کرد ${taggedPerson} <:kissed:699317394929221752>`);
 	},
 };
