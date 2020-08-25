@@ -1,5 +1,5 @@
 module.exports = {
-	name: 'maza',
+	name: 'mazakrdn',
 	description: 'Maza',
 	execute(message, args) {
         const taggedPerson = message.mentions.members.first();
