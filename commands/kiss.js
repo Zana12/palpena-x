@@ -1,6 +1,6 @@
 module.exports = {
 	name: 'kiss',
-	description: 'Test Purposes',
+	description: 'Kissing',
 	execute(message, args) {
         const taggedPerson = message.mentions.members.first();
 		if (!args.length) return message.channel.send(`ئەوەی ئەتەوێ باوەشی پیاکەی تاگیکە هەناسە!`);
