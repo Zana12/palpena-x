@@ -43,35 +43,38 @@ module.exports = {
 			};
 			return message.channel.send({embed});	
 		}
+		function executeServerInfos(){
+			let owner = message.guild.owner.user.tag;
+			let ownerID = message.guild.owner.id;
+			let memberCountServer = message.guild.memberCount;
+			let serverRegion = message.guild.region;
+			let serverCreated = message.guild.createdAt.toLocaleString();
+			let serverIcon = message.guild.iconURL();
+			const embed = {
+				"color": 0x2091ff,
+				"timestamp": new Date(),
+				"footer": {
+					"icon_url": config.logo,
+					"text": config.bot_name
+				},
+				"thumbnail": {
+					"url": serverIcon
+				},
+				"title" : "__**Server Information and Statistics**__",
+				"author": {
+					"name": member.user.tag,
+					"icon_url": member.user.displayAvatarURL()
+				},
+				"description" : `**Server Owner:** ${owner} \n**Server Owner ID:** ${ownerID} \n**Server Members:** ${memberCountServer} \n**Server Region:** ${serverRegion} \n**Server Created on:** ${serverCreated}`
+			};
+			return message.channel.send({embed});
+		}
 		switch(args[0]) {
             case "userinfo":
 				retrieveUserInfo();
 			break;
 			case "server":
-				let owner = message.guild.owner.user.tag;
-				let ownerID = message.guild.owner.id;
-				let memberCountServer = message.guild.memberCount;
-				let serverRegion = message.guild.region;
-				let serverCreated = message.guild.createdAt.toLocaleString();
-				let serverIcon = message.guild.iconURL();
-				const serverEmbed = {
-					"color": 0x2091ff,
-					"timestamp": new Date(),
-					"footer": {
-						"icon_url": config.logo,
-						"text": config.bot_name
-					},
-					"thumbnail": {
-						"url": serverIcon
-					},
-					"title" : "__**Server Information and Statistics**__",
-					"author": {
-						"name": member.user.tag,
-						"icon_url": member.user.displayAvatarURL()
-					},
-					"description" : `**Server Owner:** ${owner} \n**Server Owner ID:** ${ownerID} \n**Server Members:** ${memberCountServer} \n**Server Region:** ${serverRegion} \n**Server Created on:** ${serverCreated}`
-				};
-				message.channel.send({serverEmbed});
+				executeServerInfos();
 			break;
 		}
 	},
