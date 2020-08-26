@@ -29,9 +29,6 @@ module.exports = {
         ctx.closePath();
         ctx.clip();
 
-        const avatar = await Canvas.loadImage(member.user.displayAvatarURL({ format: 'jpg' }));
-        ctx.drawImage(avatar, 0,0);
-
         const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'member-information-image.png');
 		message.channel.send(attachment)
 	},
