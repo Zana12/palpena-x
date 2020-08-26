@@ -45,7 +45,10 @@ client.on('guildMemberAdd', member => {
 			"name": member.user.tag,
 			"icon_url": member.user.displayAvatarURL()
 		},
-		"description" : `**Profile:** ${member.user.tag} \n**Status**: ${status} \n**ID:** ${member.id} \n**Created:** ${moment.utc(member.user.createdAt).format("dddd, MMMM Do YYYY")} \n[Avatar URL](${member.user.displayAvatarURL()})`
+		"image": {
+			"url": `${member.user.displayAvatarURL()}?size=2048`
+		},
+		"description" : `**Profile:** ${member.user.tag} \n**Status**: ${status} \n**ID:** ${member.id} \n**Created:** ${moment.utc(member.user.createdAt).format("dddd, MMMM Do YYYY")}`
 	};
 	const role = member.guild.roles.cache.find(role => role.name === 'Members');
 	member.roles.add(role);
