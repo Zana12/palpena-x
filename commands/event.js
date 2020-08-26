@@ -1,7 +1,7 @@
 
 
 module.exports = {
-	name: 'ping',
+	name: 'arg',
 	description: 'Test Purposes',
 	execute(message, args) {
 		let age = args[0]; // Remember arrays are 0-based!.
