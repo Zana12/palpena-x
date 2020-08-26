@@ -1,5 +1,6 @@
 const moment = require('moment');
 const config = require('./../config.json');
+const dateFormat = require('dateformat');
 module.exports = {
 	name: "misc",
     description: "Shows the information of a member/user",
@@ -44,12 +45,21 @@ module.exports = {
 			return message.channel.send({embed});	
 		}
 		function executeServerInfos(){
+			const date = new Date();
+			dateFormat(date, 'dddd, mmmm dS, yyyy, h:MM:ss TT');
+			const millis = new Date().getTime() - message.guild.createdAt.getTime();
+			const days = millis / 1000 / 60 / 60 / 24;
+
 			let owner = message.guild.owner.user.tag;
 			let ownerID = message.guild.owner.id;
 			let memberCountServer = message.guild.memberCount;
 			let serverRegion = message.guild.region;
-			let serverCreated = message.guild.createdAt.toLocaleString();
+			let serverCreated = dateFormat(message.guild.createdAt);
+			let rolesSize = message.guild.roles.size;
+			let daysSinceCR = days.toFixed(0);
+			let ServerName = message.guild.name;
 			let serverIcon = message.guild.iconURL();
+
 			const embed = {
 				"color": 0x2091ff,
 				"timestamp": new Date(),
@@ -65,7 +75,7 @@ module.exports = {
 					"name": member.user.tag,
 					"icon_url": member.user.displayAvatarURL()
 				},
-				"description" : `**Server Owner:** ${owner} \n**Server Owner ID:** ${ownerID} \n**Server Members:** ${memberCountServer} \n**Server Region:** ${serverRegion} \n**Server Created on:** ${serverCreated}`
+				"description" : `**Server Name:** ${ServerName} \n**Server Owner:** ${owner} \n**Server Owner ID:** ${ownerID} \n**Server Members:** ${memberCountServer} members \n**Server Roles:** ${rolesSize} roles \n**Server Region:** ${serverRegion} \n**Server Created on:** ${serverCreated} \n**Days Since Creation:** ${daysSinceCR}`
 			};
 			return message.channel.send({embed});
 		}
