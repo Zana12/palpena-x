@@ -7,10 +7,7 @@ module.exports = {
 	name: 'arg',
 	description: 'Test Purposes',
 	async execute(message, args) {
-		/* let age = args[0]; // Remember arrays are 0-based!.
-        let sex = args[1];
-        let location = args[2];
-        message.reply(`Hello ${message.author.username}, I see you're a ${age} year old ${sex} from ${location}. Wanna date?`); */
+		let eventName = args[0]; // Remember arrays are 0-based!.
         const canvas = Canvas.createCanvas(1342, 755);
         const ctx = canvas.getContext('2d');
         const background = await Canvas.loadImage(image);
@@ -20,9 +17,9 @@ module.exports = {
         ctx.strokeRect(0, 0, canvas.width, canvas.height);
 
         // informations
-        ctx.font = 'bold 22px sans-serif';
+        ctx.font = 'bold 50px sans-serif';
         ctx.fillStyle = '#f34';
-        ctx.fillText('Member Informations card', 100, 100);
+        ctx.fillText(eventName, 671, 377.5);
         // Close Information
         ctx.beginPath();
         ctx.arc(125, 125, 100, 0, Math.PI * 2, true);
