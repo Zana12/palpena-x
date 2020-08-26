@@ -19,7 +19,7 @@ module.exports = {
         // informations
         ctx.font = 'bold 50px sans-serif';
         ctx.fillStyle = '#f34';
-        ctx.fillText(eventName, 671, 377.5);
+        ctx.fillText(eventName, 630, 377.5);
         // Close Information
         ctx.beginPath();
         ctx.arc(125, 125, 100, 0, Math.PI * 2, true);
