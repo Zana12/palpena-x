@@ -55,7 +55,6 @@ module.exports = {
 			let memberCountServer = message.guild.memberCount;
 			let serverRegion = message.guild.region;
 			let serverCreated = dateFormat(message.guild.createdAt);
-			let rolesSize = message.guild.roles.size;
 			let daysSinceCR = days.toFixed(0);
 			let ServerName = message.guild.name;
 			let serverIcon = message.guild.iconURL();
@@ -75,7 +74,7 @@ module.exports = {
 					"name": member.user.tag,
 					"icon_url": member.user.displayAvatarURL()
 				},
-				"description" : `**Server Name:** ${ServerName} \n**Server Owner:** ${owner} \n**Server Owner ID:** ${ownerID} \n**Server Members:** ${memberCountServer} members \n**Server Roles:** ${rolesSize} roles \n**Server Region:** ${serverRegion} \n**Server Created on:** ${serverCreated} \n**Days Since Creation:** ${daysSinceCR}`
+				"description" : `**Server Name:** ${ServerName} \n**Server Owner:** ${owner} \n**Server Owner ID:** ${ownerID} \n**Server Members:** ${memberCountServer} members \n**Server Region:** ${serverRegion} \n**Server Created on:** ${serverCreated} \n**Days Since Creation:** ${daysSinceCR}`
 			};
 			return message.channel.send({embed});
 		}
