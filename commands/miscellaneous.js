@@ -51,7 +51,6 @@ module.exports = {
 				let owner = message.guild.owner.user.tag;
 				let ownerID = message.guild.owner.id;
 				let memberCountServer = message.guild.memberCount;
-				let botCountServer = message.guild.members.filter(m=>m.user.bot).size;
 				let afkChannel = message.guild.afkChannelID === null ? 'No AFK Channel' : client.channels.get(message.guild.afkChannelID).name;
 				let serverRegion = message.guild.region;
 				let serverCreated = message.guild.createdAt.toLocaleString();
@@ -71,7 +70,7 @@ module.exports = {
 						"name": member.user.tag,
 						"icon_url": member.user.displayAvatarURL()
 					},
-					"description" : `**Server Owner:** ${owner} \n**Server Owner ID:** ${ownerID} \n**Server Members:** ${memberCountServer} \n**Server Bots:** ${botCountServer} \n**Server AFK Channel:** ${afkChannel} \n**Server Region:** ${serverRegion} \n**Server Created on:** ${serverCreated}`
+					"description" : `**Server Owner:** ${owner} \n**Server Owner ID:** ${ownerID} \n**Server Members:** ${memberCountServer} \n**Server AFK Channel:** ${afkChannel} \n**Server Region:** ${serverRegion} \n**Server Created on:** ${serverCreated}`
 				};
 				message.channel.send({serverEmbed});
 			break;
