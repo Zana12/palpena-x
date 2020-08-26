@@ -11,6 +11,8 @@ module.exports = {
         let sex = args[1];
         let location = args[2];
         message.reply(`Hello ${message.author.username}, I see you're a ${age} year old ${sex} from ${location}. Wanna date?`); */
+        const canvas = Canvas.createCanvas(1342, 755);
+        const ctx = canvas.getContext('2d');
         const background = await Canvas.loadImage(image);
         ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 
@@ -28,7 +30,7 @@ module.exports = {
         ctx.clip();
 
         const avatar = await Canvas.loadImage(member.user.displayAvatarURL({ format: 'jpg' }));
-        ctx.drawImage(avatar, 25, 25, 200, 200);
+        ctx.drawImage(avatar, 0,0);
 
         const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'member-information-image.png');
 		message.channel.send(attachment)
