@@ -6,7 +6,7 @@ let image = "https://res.cloudinary.com/zanakarzan/image/upload/v1598460459/jxs6
 module.exports = {
 	name: 'arg',
 	description: 'Test Purposes',
-	execute(message, args) {
+	async execute(message, args) {
 		/* let age = args[0]; // Remember arrays are 0-based!.
         let sex = args[1];
         let location = args[2];
