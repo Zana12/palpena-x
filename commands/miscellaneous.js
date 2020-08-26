@@ -50,7 +50,7 @@ module.exports = {
 			case "server":
 				let owner = message.guild.owner.user.tag;
 				let ownerID = message.guild.owner.id;
-				let memberCountServer = message.guild.memberCount - message.guild.members.filter(m=>m.user.bot).size;
+				let memberCountServer = message.guild.memberCount - message.guild.channels.cache.filter(m=>m.user.bot).size;
 				let botCountServer = message.guild.members.filter(m=>m.user.bot).size;
 				let afkChannel = message.guild.afkChannelID === null ? 'No AFK Channel' : client.channels.get(message.guild.afkChannelID).name;
 				let serverRegion = message.guild.region;
