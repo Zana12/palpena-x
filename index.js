@@ -84,7 +84,6 @@ client.on('message', async message => {
 		let count = 0;
 		if (Number(content) === count + 1) {
 		  count++;
-		  console.log(count++);
 		} else if (member.id !== client.user.id) {
 		  message.channel.send(`${member} messed up!`).catch(console.error);
 		  count = 0;
