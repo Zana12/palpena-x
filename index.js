@@ -64,6 +64,7 @@ client.on('guildMemberAdd', member => {
 
 client.on("messageDelete", async msg => {
 	let logs = await msg.guild.fetchAuditLogs({type: 72});
+	console.log(logs);
 	let entry = logs.entries.first();
   
 	let embed = new Discord.RichEmbed()
