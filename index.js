@@ -112,7 +112,8 @@ client.on('message', ({channel, content, member}) => {
   if (channel.id === '743416987023048734') {
     // You can ignore all bot messages like this
     if (member.user.bot) return
-    // If the message is the current count + 1...
+	// If the message is the current count + 1...
+	count = 0
     if (Number(content) === count + 1) {
       // ...increase the count
       count++
