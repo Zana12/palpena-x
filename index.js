@@ -65,17 +65,19 @@ client.on('guildMemberAdd', member => {
 client.on("messageDelete", async msg => {
 	let logs = await msg.guild.fetchAuditLogs({type: 72});
 	let entry = logs.entries.first();
-
+  
 	let embed = new Discord.RichEmbed()
-	.setTitle("**DELETED MESSAGE**")
-	.setColor("#fc3c3c")
-	.setAuthor(msg.author.tag, msg.author.avatarURL)
-	.setDescription(`**Author:** ${msg.author.tag}\n**Channel:** ${msg.channel}\n**Message:** ${msg.content}\n**Executor**: ${entry.executor}`)
-	.setFooter(`Message ID: ${msg.id}\nAuthor ID: ${msg.author.id}`)
-	.setThumbnail(msg.author.avatarURL)
-	.setTimestamp();
+	  .setTitle("**DELETED MESSAGE**")
+	  .setColor("#fc3c3c")
+	  .addField("Author", msg.author.tag, true)
+	  .addField("Channel", msg.channel, true)
+	  .addField("Message", msg.content)
+	  .addField("Executor", entry.executor)
+	  .addField("Reason", entry.reason || "Unspecified")
+	  .setFooter(`Message ID: ${msg.id} | Author ID: ${msg.author.id}`);
+  
 	let delchannel = msg.guild.channels.find(x => x.name === 'moderations');
-	delchannel.send(embed);
+	delchannel.send({embed});
 });
 
 client.on('message', async message => {
