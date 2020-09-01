@@ -80,14 +80,13 @@ client.on('message', async message => {
 
 client.on('message', async message => {
 	if (channel.id === '667011220477444135') {
-		// You can ignore all bot messages like this
 		if (member.user.bot) return;
 		let count = 0;
 		if (Number(content) === count + 1) {
 		  count++;
 		  console.log(count++);
 		} else if (member.id !== client.user.id) {
-		  channel.send(`${member} messed up!`).catch(console.error);
+		  message.channel.send(`${member} messed up!`).catch(console.error);
 		  count = 0;
 		}
 	  }
