@@ -80,7 +80,7 @@ client.on('message', async message => {
 
 client.on('message', async message => {
 if (message.content === "1") {
-	channel.send("Hala blxamis")
+	message.channel.send("Hala blxamis")
 }
 });
 client.login(token);
