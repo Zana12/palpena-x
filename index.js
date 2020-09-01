@@ -79,13 +79,13 @@ client.on('message', async message => {
 });
 
 client.on('message', async message => {
-	if (channel.id === '667011220477444135') {
-		if (member.user.bot) return;
+	if (client.channel.id === '667011220477444135') {
+		if (client.member.user.bot) return;
 		let count = 0;
 		if (Number(content) === count + 1) {
 		  count++;
-		} else if (member.id !== client.user.id) {
-		  message.channel.send(`${member} messed up!`).catch(console.error);
+		} else if (client.member.id !== client.user.id) {
+		  message.channel.send(`${client.member} messed up!`).catch(console.error);
 		  count = 0;
 		}
 	  }
