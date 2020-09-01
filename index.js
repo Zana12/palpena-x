@@ -61,7 +61,34 @@ client.on('guildMemberAdd', member => {
 	}	
 	console.log(`${member.user.tag} Joined.`);
 });
+/* client.on("messageDelete", async (messageDelete) => {
+  await Discord.Util.delayFor(900);
+  const fetchedLogs = await messageDelete.guild.fetchAuditLogs({
+    limit: 6,
+    type: 'MESSAGE_DELETE'
+  }).catch(() => ({
+    entries: []
+  }));
 
+  const auditEntry = fetchedLogs.entries.find(a =>
+    a.target.id === messageDelete.author.id &&
+    a.extra.channel.id === messageDelete.channel.id &&
+    Date.now() - a.createdTimestamp < 20000
+  );
+  const executor = auditEntry ? auditEntry.executor.tag : 'Unknown';
+  const countingChannel = messageDelete.guild.channels.find(x => x.name === "palpena-counting");
+  const DeleteEmbed = new Discord.MessageEmbed()
+    .setTitle("DELETED MESSAGE")
+    .setColor("#fc3c3c")
+    .addField("Author", messageDelete.author.tag, true)
+    .addField("Deleted By", executor, true)
+    .addField("Channel", messageDelete.countingChannel, true)
+    .addField("Message", messageDelete.content || "None")
+    .setFooter(`Message ID: ${messageDelete.id} | Author ID: ${messageDelete.author.id}`);
+
+  const DeleteChannel = messageDelete.guild.channels.find(x => x.name === "moderations");
+  DeleteChannel.send(DeleteEmbed);
+}); */
 client.on('message', async message => {
 	if (!message.content.startsWith(prefix) || message.author.bot) return;
 	const args = message.content.slice(prefix.length).split(/ +/);
@@ -77,5 +104,37 @@ client.on('message', async message => {
 		message.reply('there was an error trying to execute that command!');
 	}
 });
-
+client.on('message', ({channel, content, member}) => {
+	// Only do this for the counting channel of course
+  // If you want to simply make this work for all channels called 'counting', you
+  // could use this line:
+  // if (client.channels.cache.filter(c => c.name === 'counting').keyArray().includes(channel.id))
+  if (channel.id === '743416987023048734') {
+    // You can ignore all bot messages like this
+    if (member.user.bot) return
+    // If the message is the current count + 1...
+    if (Number(content) === count + 1) {
+      // ...increase the count
+      count++
+      // Remove any existing timeout to count
+      if (timeout) client.clearTimeout(timeout)
+      // Add a new timeout
+      timeout = client.setTimeout(
+        // This will make the bot count and log all errors
+        () => channel.send(++count).catch(console.error),
+        // after 30 seconds
+        30000
+      )
+    // If the message wasn't sent by the bot...
+    } else if (member.id !== client.user.id) {
+      // ...send a message because the person stuffed up the counting (and log all errors)
+      channel.send(`${member} messed up!`).catch(console.error)
+      // Reset the count
+      count = 0
+      // Reset any existing timeout because the bot has counted so it doesn't need to
+      // count again
+      if (timeout) client.clearTimeout(timeout)
+    }
+  }
+});
 client.login(token);
