@@ -62,23 +62,9 @@ client.on('guildMemberAdd', member => {
 	console.log(`${member.user.tag} Joined.`);
 });
 
-client.on("messageDelete", async msg => {
-	let logs = await msg.guild.fetchAuditLogs({type: 72});
-	console.log(logs);
-	let entry = logs.entries.first();
-  
-	let embed = new Discord.RichEmbed()
-	  .setTitle("**DELETED MESSAGE**")
-	  .setColor("#fc3c3c")
-	  .addField("Author", msg.author.tag, true)
-	  .addField("Channel", msg.channel, true)
-	  .addField("Message", msg.content)
-	  .addField("Executor", entry.executor)
-	  .addField("Reason", entry.reason || "Unspecified")
-	  .setFooter(`Message ID: ${msg.id} | Author ID: ${msg.author.id}`);
-  
-	let delchannel = msg.guild.channels.find(x => x.name === 'moderations');
-	delchannel.send({embed});
+client.on('messageDelete', message => {
+	console.log(`a message saying "${message.cleanContent}" was deleted from channel: ${message.channel.name} at ${new Date()}`);
+	client.channels.get("667011220477444135").send(`A message saying "${message.cleanContent}" has been deleted at ${new Date()}`)
 });
 
 client.on('message', async message => {
