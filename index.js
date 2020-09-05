@@ -86,9 +86,12 @@ client.on('message', async message => {
   const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
   const command = args.shift().toLowerCase();
 
-  if(command === "ping") {
-    const m = await message.channel.send("Ping?");
-    m.edit(`Pong! Latency is ${m.createdTimestamp - message.createdTimestamp}ms. API Latency is ${Math.round(client.ping)}ms`);
+  if(command === "guild") {
+	const channel = message.guild.channels.cache.find(ch => ch.name === 'bot-guild-status');
+	const embed = new Discord.MessageEmbed()
+		.setDescription(`Now I am going to serve ${message.guilds.size} servers`)
+		.setColor("#db1d1d");
+	channel.channel.send(embed);
   }
 
 });
