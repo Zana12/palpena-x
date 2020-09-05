@@ -17,7 +17,7 @@ for (const file of commandFiles) {
 }
 
 client.once('ready', () => {
-	client.user.setActivity(`${prefix} | Palpena Bot`, { type: 'PLAYING' })
+	client.user.setActivity(`Palpena Server`, { type: 'WATCHING' })
 	console.log('Ready Sir!');
 });
 client.on('guildMemberAdd', member => {
