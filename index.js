@@ -20,6 +20,25 @@ client.once('ready', () => {
 	client.user.setActivity(`Palpena Server`, { type: 'WATCHING' })
 	console.log('Ready Sir!');
 });
+
+client.on("guildCreate", guild => {
+	console.log(`New guild joined: ${guild.name} (id: ${guild.id}). This guild has ${guild.memberCount} members!`);
+	const channel = member.guild.channels.cache.find(ch => ch.name === 'bot-guild-status');
+	const embed = new Discord.MessageEmbed()
+		.setDescription(`New guild joined: ${guild.name} (id: ${guild.id}). This guild has ${guild.memberCount} members! \nNow I am going to serve ${client.guilds.size} servers`)
+		.setColor("#14ff67");
+	channel.channel.send(embed);
+});
+
+client.on("guildDelete", guild => {
+	console.log(`I have been removed from: ${guild.name} (id: ${guild.id})`);
+	const channel = member.guild.channels.cache.find(ch => ch.name === 'bot-guild-status');
+	const embed = new Discord.MessageEmbed()
+		.setDescription(`I have been removed from: ${guild.name} (id: ${guild.id}) \nNow I am going to serve ${client.guilds.size} servers`)
+		.setColor("#db1d1d");
+	channel.channel.send(embed);
+});
+
 client.on('guildMemberAdd', member => {
 	const channel = member.guild.channels.cache.find(ch => ch.name === 'members-data');
 	if (!channel) return;
