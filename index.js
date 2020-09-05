@@ -23,18 +23,20 @@ client.once('ready', () => {
 
 client.on("guildCreate", guild => {
 	console.log(`New guild joined: ${guild.name} (id: ${guild.id}). This guild has ${guild.memberCount} members!`);
+	const channel = guild.guild.channels.cache.find(ch => ch.name === 'bot-guild-status');
 	const embed = new Discord.MessageEmbed()
 		.setDescription(`New guild joined: ${guild.name} (id: ${guild.id}). This guild has ${guild.memberCount} members! \nNow I am going to serve ${client.guilds.size} servers`)
 		.setColor("#14ff67");
-		guild.channels.cache.get("751830555682668615").send(embed);
+	channel.channel.send(embed);
 });
 
 client.on("guildDelete", guild => {
 	console.log(`I have been removed from: ${guild.name} (id: ${guild.id})`);
+	const channel = guild.guild.channels.cache.find(ch => ch.name === 'bot-guild-status');
 	const embed = new Discord.MessageEmbed()
 		.setDescription(`I have been removed from: ${guild.name} (id: ${guild.id}) \nNow I am going to serve ${client.guilds.size} servers`)
 		.setColor("#db1d1d");
-	guild.channels.cache.get("751830555682668615").send(embed);
+	channel.channel.send(embed);
 });
 
 client.on('guildMemberAdd', member => {
@@ -78,7 +80,18 @@ client.on('guildMemberAdd', member => {
 	}	
 	console.log(`${member.user.tag} Joined.`);
 });
+client.on('message', async message => {
+  if(message.author.bot) return;
+  if(!message.content.startsWith(config.prefix)) return;
+  const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
+  const command = args.shift().toLowerCase();
 
+  if(command === "ping") {
+    const m = await message.channel.send("Ping?");
+    m.edit(`Pong! Latency is ${m.createdTimestamp - message.createdTimestamp}ms. API Latency is ${Math.round(client.ping)}ms`);
+  }
+
+});
 client.on('message', async message => {
 	if (!message.content.startsWith(prefix) || message.author.bot) return;
 	const args = message.content.slice(prefix.length).split(/ +/);
