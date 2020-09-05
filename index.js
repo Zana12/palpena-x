@@ -23,20 +23,10 @@ client.once('ready', () => {
 
 client.on("guildCreate", guild => {
 	console.log(`New guild joined: ${guild.name} (id: ${guild.id}). This guild has ${guild.memberCount} members!`);
-	const channel = guild.guild.channels.cache.find(ch => ch.name === 'bot-guild-status');
-	const embed = new Discord.MessageEmbed()
-		.setDescription(`New guild joined: ${guild.name} (id: ${guild.id}). This guild has ${guild.memberCount} members! \nNow I am going to serve ${client.guilds.size} servers`)
-		.setColor("#14ff67");
-	channel.channel.send(embed);
 });
 
 client.on("guildDelete", guild => {
 	console.log(`I have been removed from: ${guild.name} (id: ${guild.id})`);
-	const channel = guild.guild.channels.cache.find(ch => ch.name === 'bot-guild-status');
-	const embed = new Discord.MessageEmbed()
-		.setDescription(`I have been removed from: ${guild.name} (id: ${guild.id}) \nNow I am going to serve ${client.guilds.size} servers`)
-		.setColor("#db1d1d");
-	channel.channel.send(embed);
 });
 
 client.on('guildMemberAdd', member => {
@@ -86,13 +76,7 @@ client.on('message', async message => {
   const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
   const command = args.shift().toLowerCase();
 
-  if(command === "guild") {
-	const channel = message.guild.channels.cache.find(ch => ch.name === 'bot-guild-status');
-	const embed = new Discord.MessageEmbed()
-		.setDescription(`Now I am going to serve ${message.guilds.size} servers`)
-		.setColor("#db1d1d");
-	channel.channel.send(embed);
-  }
+
 
 });
 client.on('message', async message => {
