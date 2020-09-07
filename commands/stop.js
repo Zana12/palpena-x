@@ -1,5 +1,5 @@
 module.exports = {
-	name: 'stop',
+	name: 'stopy',
 	description: 'Test Purposes',
 	execute(message, args) {
 		if (message.channel.type === 'dm') return;
