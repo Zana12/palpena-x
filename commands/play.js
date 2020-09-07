@@ -12,7 +12,7 @@ module.exports = {
 		const voiceChannel = message.member.voice.channel;
 
 		if (!voiceChannel) {
-			return message.reply('> **ئەوە تۆ تەواوی؟ جارێ بڕۆ ڤۆیس ئینجا من بانگکە کورە**');
+			return message.reply('\n> **ئەوە تۆ تەواوی؟ جارێ بڕۆ ڤۆیس ئینجا من بانگکە کورە**');
 		}
 
 		voiceChannel.join().then(connection => {
