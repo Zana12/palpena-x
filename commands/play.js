@@ -6,7 +6,7 @@ module.exports = {
 	description: 'Test Purposes',
 	execute(message, args) {
 		let ytLink = args[0];
-		if(!ytLink.length) return message.channel.send(`> **ئێ کاکە جارێ لینکەکە دانێ دە با نەبێ بە ناخۆشیمان**`)
+		if(!args.length) return message.channel.send(`> **ئێ کاکە جارێ لینکەکە دانێ دە با نەبێ بە ناخۆشیمان**`)
 		if (message.channel.type === 'dm') return;
 
 		const voiceChannel = message.member.voice.channel;
