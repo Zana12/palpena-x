@@ -21,6 +21,6 @@ module.exports = {
 
 			dispatcher.on('finish', () => voiceChannel.leave());
 		});
-		message.channel.send(`> **START PLAYING: ** ${ytLink}`);
+		message.channel.send(`> **START PLAYING: ** <${ytLink}>`);
 	},
 };
