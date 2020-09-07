@@ -1,8 +1,7 @@
-const Discord = require('discord.js');
 const ytdl = require('ytdl-core');
 
 module.exports = {
-	name: 'playy',
+	name: 'play',
 	description: 'Test Purposes',
 	execute(message, args) {
 		let ytLink = args[0];
