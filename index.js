@@ -32,14 +32,7 @@ client.on("guildDelete", guild => {
 client.on('guildMemberAdd', member => {
 	const channel = member.guild.channels.cache.find(ch => ch.name === 'members-data');
 	if (!channel) return;
-
-	if (member.presence.status === 'dnd') member.presence.status = ':red_circle: DnD';
-	if (member.presence.status === 'online') member.presence.status = ':green_circle: Online';
-	if (member.presence.status === 'idle') member.presence.status = ':orange_circle: Idle';
-	if (member.presence.status === 'offline') member.presence.status = ':white_circle: Offline';
-
 	let x = Date.now() - member.createdAt;
-	let status = member.presence.status;
 	const embed = {
 		"color": 0x2091ff,
 		"timestamp": new Date(),
@@ -57,7 +50,7 @@ client.on('guildMemberAdd', member => {
 		"image": {
 			"url": `${member.user.displayAvatarURL()}?size=2048`
 		},
-		"description" : `**Profile:** ${member.user.tag} \n**Status**: ${status} \n**ID:** ${member.id} \n**Created:** ${moment.utc(member.user.createdAt).format("dddd, MMMM Do YYYY")}`
+		"description" : `**Profile:** ${member.user.tag} \n**ID:** ${member.id} \n**Created:** ${moment.utc(member.user.createdAt).format("dddd, MMMM Do YYYY")}`
 	};
 	const role = member.guild.roles.cache.find(role => role.name === 'Members');
 	member.roles.add(role);
@@ -69,6 +62,32 @@ client.on('guildMemberAdd', member => {
 		channel.send(`${member}, Joined to the server \n Role Status = ${roleStatus_Y}`, {embed});
 	}	
 	console.log(`${member.user.tag} Joined.`);
+});
+client.on('guildMemberRemove', member => {
+	const channel = member.guild.channels.cache.find(ch => ch.name === 'member-left');
+	if (!channel) return;
+	let x = Date.now() - member.createdAt;
+	const embed = {
+		"color": 0x2091ff,
+		"timestamp": new Date(),
+		"footer": {
+			"icon_url": config.logo,
+			"text": config.bot_name
+		},
+		"thumbnail": {
+			"url": member.user.displayAvatarURL()
+		},
+		"author": {
+			"name": member.user.tag,
+			"icon_url": member.user.displayAvatarURL()
+		},
+		"image": {
+			"url": `${member.user.displayAvatarURL()}?size=2048`
+		},
+		"description" : `**Profile:** ${member.user.tag} \n**ID:** ${member.id} \n**Created:** ${moment.utc(member.user.createdAt).format("dddd, MMMM Do YYYY")}`
+	};
+	channel.send(`${member}, left the guild.`, {embed});
+	console.log(`${member} left the guild.`);
 });
 client.on('message', async message => {
 	if (!message.content.startsWith(prefix) || message.author.bot) return;
