@@ -2,11 +2,12 @@ const Discord = require('discord.js');
 const config = require('./config.json');
 const client = new Discord.Client();
 const moment = require('moment');
-
-
+const invites = {};
+const wait = require('util').promisify(setTimeout);
 const token = process.env.DISCORD_TOKEN;
 const prefix = config.prefix;
 const fs = require('fs');
+
 client.commands = new Discord.Collection();
 
 const commandFiles = fs.readdirSync('./commands/').filter(file => file.endsWith('.js'));
@@ -18,6 +19,14 @@ for (const file of commandFiles) {
 
 client.once('ready', () => {
 	client.user.setActivity(`Palpena Server`, { type: 'WATCHING' })
+	await wait(1000);
+
+	// Load all invites for all guilds and save them to the cache.
+	client.guilds.forEach(g => {
+	  g.fetchInvites().then(guildInvites => {
+		invites[g.id] = guildInvites;
+	  });
+	});
 	console.log('Ready Sir!');
 });
 
@@ -61,7 +70,23 @@ client.on('guildMemberAdd', member => {
 		let roleStatus_Y = ":warning:";
 		channel.send(`${member}, Joined to the server \n Role Status = ${roleStatus_Y}`, {embed});
 	}	
+	channel.send(`${member}, Joined to the server`, {embed});
 	console.log(`${member.user.tag} Joined.`);
+
+	member.guild.fetchInvites().then(guildInvites => {
+		// This is the *existing* invites for the guild.
+		const ei = invites[member.guild.id];
+		// Update the cached invites for the guild.
+		invites[member.guild.id] = guildInvites;
+		// Look through the invites, find the one for which the uses went up.
+		const invite = guildInvites.find(i => ei.get(i.code).uses < i.uses);
+		// This is just to simplify the message being sent below (inviter doesn't have a tag property)
+		const inviter = client.users.get(invite.inviter.id);
+		// Get the log channel (change to your liking)
+		const logChannel = member.guild.channels.find(channel => channel.name === "member-invites");
+		// A real basic message with the information we need. 
+		logChannel.send(`${member.user.tag} joined using invite code \`${invite.code}\` from \`${inviter.tag}\`. Invite was used \`${invite.uses}\` times since its creation.`);
+	  });
 });
 client.on('guildMemberRemove', member => {
 	const channel = member.guild.channels.cache.find(ch => ch.name === 'member-left');
