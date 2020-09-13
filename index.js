@@ -76,10 +76,10 @@ client.on('guildMemberAdd', member => {
 	member.guild.fetchInvites().then(guildInvites => {
 		const ei = invites[member.guild.id];
 		invites[member.guild.id] = guildInvites;
-		const invite = guildInvites.cache.find(i => ei.get(i.code).uses < i.uses);
+		const invite = guildInvites.find(i => ei.get(i.code).uses < i.uses);
 		const inviter = client.users.cache.get(invite.inviter.id);
 		const logChannel = member.guild.channels.cache.find(channel => channel.name === "member-invites");
-		logChannel.send(`<@${member.id}> joined using invite code \`${invite.code}\` from **${inviter.tag}**. Invite was used \`${invite.uses}\` times since its creation.`);
+		logChannel.send(`<@${member.id}> joined using invite code \`${invite.code}\` from **${inviter.tag}**. Invite was used \`${invite}\` times since its creation.`);
 	  });
 });
 client.on('guildMemberRemove', member => {
