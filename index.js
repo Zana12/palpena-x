@@ -61,7 +61,7 @@ client.on('guildMemberAdd', member => {
 		},
 		"description" : `**Profile:** ${member.user.tag} \n**ID:** ${member.id} \n**Created:** ${moment.utc(member.user.createdAt).format("dddd, MMMM Do YYYY")}`
 	};
-	const role = member.guild.roles.cache.find(role => role.name === 'Members');
+	const role = member.guild.roles.cache.find(role => role.name === 'Member');
 	member.roles.add(role);
 	if(member.roles.add(role)) {
 		let roleStatus_X = ":white_check_mark:";
