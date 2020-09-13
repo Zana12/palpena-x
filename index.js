@@ -17,7 +17,7 @@ for (const file of commandFiles) {
 	console.log(`${file} loaded`);
 }
 
-client.once('ready', () => {
+client.once('ready', async () => {
 	client.user.setActivity(`Palpena Server`, { type: 'WATCHING' })
 	await wait(1000);
 
