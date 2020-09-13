@@ -5,6 +5,6 @@ module.exports = {
 	cooldown: 10,
 	execute(message, args) {
         message.delete(message.author);
-		message.reply(`,\n**PALPENA SERVER LINK:** \n > https://discord.gg/nCaP6TZ`);
+		message.reply(`\n**PALPENA SERVER LINK:**\n> https://discord.gg/nCaP6TZ`);
 	},
 };
