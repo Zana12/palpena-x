@@ -29,9 +29,9 @@ client.once('ready', async () => {
 	});
 	console.log('Ready Sir!');
 	// Member Channel Counter
-	let myGuild = client.guilds.get('604804905395552266');
+	let myGuild = client.guilds.cache.get('604804905395552266');
 	let memberCount = myGuild.memberCount;
-	let countChannel = myGuild.channels.get('755095563229200534');
+	let countChannel = myGuild.channels.cache.get('755095563229200534');
 	countChannel.setName('Members: '+ memberCount)
 	.then(result => console.log(result))
 	.catch(error => console.log(error));
@@ -81,9 +81,9 @@ client.on('guildMemberAdd', member => {
 	});
 
 		// Member Channel Counter
-	let myGuild = client.guilds.get('604804905395552266');
+	let myGuild = client.guilds.cache.get('604804905395552266');
 	let memberCount = myGuild.memberCount;
-	let countChannel = myGuild.channels.get('755095563229200534');
+	let countChannel = myGuild.channels.cache.get('755095563229200534');
 	countChannel.setName('Members: '+ memberCount)
 	.then(result => console.log(result))
 	.catch(error => console.log(error));
@@ -116,9 +116,9 @@ client.on('guildMemberRemove', member => {
 	console.log(`${member} left the guild.`);
 
 		// Member Channel Counter
-	let myGuild = client.guilds.get('604804905395552266');
+	let myGuild = client.guilds.cache.get('604804905395552266');
 	let memberCount = myGuild.memberCount;
-	let countChannel = myGuild.channels.get('755095563229200534');
+	let countChannel = myGuild.channels.cache.get('755095563229200534');
 	countChannel.setName('Members: '+ memberCount)
 	.then(result => console.log(result))
 	.catch(error => console.log(error));
