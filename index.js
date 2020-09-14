@@ -28,6 +28,13 @@ client.once('ready', async () => {
 	  });
 	});
 	console.log('Ready Sir!');
+	// Member Channel Counter
+	let myGuild = client.guilds.get('604804905395552266');
+	let memberCount = myGuild.memberCount;
+	let countChannel = myGuild.channels.get('755095563229200534');
+	countChannel.setName('Members: '+ memberCount)
+	.then(result => console.log(result))
+	.catch(error => console.log(error));
 });
 
 client.on("guildCreate", guild => {
@@ -71,7 +78,15 @@ client.on('guildMemberAdd', member => {
 		const inviter = client.users.cache.get(invite.inviter.id);
 		const logChannel = member.guild.channels.cache.find(channel => channel.name === "member-invites");
 		logChannel.send(`<@${member.id}> joined using invite code \`${invite.code}\` from **${inviter.tag}**`);
-	  });
+	});
+
+		// Member Channel Counter
+	let myGuild = client.guilds.get('604804905395552266');
+	let memberCount = myGuild.memberCount;
+	let countChannel = myGuild.channels.get('755095563229200534');
+	countChannel.setName('Members: '+ memberCount)
+	.then(result => console.log(result))
+	.catch(error => console.log(error));
 });
 
 client.on('guildMemberRemove', member => {
@@ -99,6 +114,14 @@ client.on('guildMemberRemove', member => {
 	};
 	channel.send(`${member}, left the guild.`, {embed});
 	console.log(`${member} left the guild.`);
+
+		// Member Channel Counter
+	let myGuild = client.guilds.get('604804905395552266');
+	let memberCount = myGuild.memberCount;
+	let countChannel = myGuild.channels.get('755095563229200534');
+	countChannel.setName('Members: '+ memberCount)
+	.then(result => console.log(result))
+	.catch(error => console.log(error));
 });
 client.on('message', async message => {
 	if (!message.content.startsWith(prefix) || message.author.bot) return;
