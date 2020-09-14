@@ -32,9 +32,8 @@ client.once('ready', async () => {
 	let myGuild = client.guilds.cache.get('604804905395552266');
 	let memberCount = myGuild.memberCount;
 	let countChannel = myGuild.channels.cache.get('755095563229200534');
-	countChannel.setName('Members: '+ memberCount)
-	.then(result => console.log(result))
-	.catch(error => console.log(error));
+	countChannel.setName('Members: '+ memberCount);
+	console.log(memberCount+ 'users now!')
 });
 
 client.on("guildCreate", guild => {
@@ -84,9 +83,8 @@ client.on('guildMemberAdd', member => {
 	let myGuild = client.guilds.cache.get('604804905395552266');
 	let memberCount = myGuild.memberCount;
 	let countChannel = myGuild.channels.cache.get('755095563229200534');
-	countChannel.setName('Members: '+ memberCount)
-	.then(result => console.log(result))
-	.catch(error => console.log(error));
+	countChannel.setName('Members: '+ memberCount);
+	console.log(memberCount+ 'users now!');
 });
 
 client.on('guildMemberRemove', member => {
@@ -119,9 +117,8 @@ client.on('guildMemberRemove', member => {
 	let myGuild = client.guilds.cache.get('604804905395552266');
 	let memberCount = myGuild.memberCount;
 	let countChannel = myGuild.channels.cache.get('755095563229200534');
-	countChannel.setName('Members: '+ memberCount)
-	.then(result => console.log(result))
-	.catch(error => console.log(error));
+	countChannel.setName('Members: '+ memberCount);
+	console.log(memberCount+ 'users now!')
 });
 client.on('message', async message => {
 	if (!message.content.startsWith(prefix) || message.author.bot) return;
