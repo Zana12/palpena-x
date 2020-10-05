@@ -18,6 +18,6 @@ module.exports = {
             }
           };
         message.delete(message.author);
-		channel.send(`<@&732904920306548806>,`,{embed});
+		channel.send(`<@&675383307826888725>,`,{embed});
 	},
 };
