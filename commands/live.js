@@ -3,7 +3,7 @@ module.exports = {
 	description: 'executing the server command',
 	async execute(message, args) {
         let livelink = args[0];
-        if (!args.length) return message.channel.send(`ئەو لینکە دانێ بەهەشتی، یاپراخ لە ئاگاداری دایناوە جوان سەیریکە <:nababa:7334231424748748801>`);
+        if (!args.length) return message.channel.send(`ئەو لینکە دانێ بەهەشتی، یاپراخ لە ئاگاداری دایناوە جوان سەیریکە <:nababa:762646412470386719>`);
         const channel = message.guild.channels.cache.find(ch => ch.name === 'palpena-stream');
         const embed = {
             "title": "Palpena Team is Live Now!",
