@@ -4,6 +4,6 @@ module.exports = {
 	async execute(message, args) {
         let Streamer = args[0]; // Remember arrays are 0-based!.
         let live = args[1];
-		message.channel.send(`${eventName}, ${live}`);
+		message.channel.send(`${Streamer}, ${live}`);
 	},
 };
