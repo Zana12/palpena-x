@@ -3,7 +3,7 @@ module.exports = {
 	description: 'executing the server command',
 	async execute(message, args) {
         let livelink = args[0];
-        const channel = member.guild.channels.cache.find(ch => ch.name === 'palpena-stream');
+        const channel = message.guild.channels.cache.find(ch => ch.name === 'palpena-stream');
         const embed = {
             "title": "Palpena Team is Live Now!",
             "description": `<:facebook:732173439183355904> We are Streaming now on Facebook make sure to show some Support to our Team! \n \n \n **LINK:** **[Click here](${livelink})**`,
