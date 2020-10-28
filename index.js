@@ -62,7 +62,7 @@ client.on('guildMemberAdd', member => {
 		},
 		"description" : `**Profile:** ${member.user.tag} \n**ID:** ${member.id} \n**Created:** ${moment.utc(member.user.createdAt).format("dddd, MMMM Do YYYY")}`
 	};
-	channel.send(`${member}, Joined to the server`, {embed});
+	channel.send(`${member}, Joined the server`, {embed});
 	console.log(`${member.user.tag} Joined.`);
 
 	member.guild.fetchInvites().then(guildInvites => {
