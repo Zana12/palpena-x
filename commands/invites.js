@@ -25,8 +25,6 @@ module.exports = {
         
         message.channel.send(embed);*/
         var user = message.mentions.members.first() || message.author;
-		if (!args.length) return message.channel.send(`ئەو کەسە تاگ بکە ئەتەوێ ڕێژەی ئینڤایتەکانی بزانی`);
-
         message.guild.fetchInvites()
         .then
         (invites =>
@@ -38,7 +36,7 @@ module.exports = {
                     var invite = userInvites[i];
                     userInviteCount += invite['uses'];
                 }
-                    message.send(`عەک پێنەگەی هەتا ئێستا ${userInviteCount} ئەمەنە نەفەرو کردووە بە ناو ئەم سێرڤەرەیا عامفەرم!`);
+                    message.channel.send(`عەک پێنەگەی هەتا ئێستا ${userInviteCount} ئەمەنە نەفەرو کردووە بە ناو ئەم سێرڤەرەیا عامفەرم!`);
             }
         );
 	},
