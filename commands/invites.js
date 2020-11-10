@@ -32,11 +32,15 @@ module.exports = {
                 const userInvites = invites.array().filter(o => o.inviter.id === user.id);
                 var userInviteCount = 0;
                 for(var i=0; i < userInvites.length; i++)
-                {
-                    var invite = userInvites[i];
-                    userInviteCount += invite['uses'];
-                }
-                    message.channel.send(`عەکە پێنەگەی مامۆسا ${user}! \n هەتیو ئەزانی هەتا ئیسە **${userInviteCount}** نەفەرو کردووە بە ناو ئەم سێرڤەرەیا!!`);
+                    {
+                        var invite = userInvites[i];
+                        userInviteCount += invite['uses'];
+                    }
+                        if(userInviteCount == 0) {
+                            message.channel.send(`عەک پێنەگەی ڕۆڵە! هەی جەنابی ${user} ئینڤایتت هەر سفری سفرە دەست نەیەیتۆ لەم کۆماندە با حەیامان نەچێ`)
+                        } else {
+                            message.channel.send(`عەک پێنەگەی مامۆسا ${user}! \n هەتیو ئەزانی هەتا ئیسە **${userInviteCount}** نەفەرو کردووە بە ناو ئەم سێرڤەرەیا!!`);
+                        }
             }
         );
 	},
