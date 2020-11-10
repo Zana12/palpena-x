@@ -38,7 +38,7 @@ module.exports = {
                     var invite = userInvites[i];
                     userInviteCount += invite['uses'];
                 }
-                    message.reply(`You have ${userInviteCount} invites.`);
+                    message.send(`عەک پێنەگەی هەتا ئێستا ${userInviteCount} ئەمەنە نەفەرو کردووە بە ناو ئەم سێرڤەرەیا عامفەرم!`);
             }
         );
 	},
