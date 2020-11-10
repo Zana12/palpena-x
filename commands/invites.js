@@ -36,7 +36,7 @@ module.exports = {
                     var invite = userInvites[i];
                     userInviteCount += invite['uses'];
                 }
-                    message.channel.send(`عەک پێنەگەی هەتا ئێستا ${userInviteCount} ئەمەنە نەفەرو کردووە بە ناو ئەم سێرڤەرەیا عامفەرم!`);
+                    message.channel.send(`عەکە پێنەگەی مامۆسا ${user}! \n هەتیو ئەزانی هەتا ئیسە **${userInviteCount}** نەفەرو کردووە بە ناو ئەم سێرڤەرەیا!!`);
             }
         );
 	},
