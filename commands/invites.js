@@ -24,7 +24,7 @@ module.exports = {
             .addField('Leaderboard', `\`\`\`${table.table(possibleInvites)}\`\`\``);
         
         message.channel.send(embed);*/
-        var user = message.mentions.members.first();
+        var user = message.mentions.members.first() || message.author;
 		if (!args.length) return message.channel.send(`ئەو کەسە تاگ بکە ئەتەوێ ڕێژەی ئینڤایتەکانی بزانی`);
 
         message.guild.fetchInvites()
