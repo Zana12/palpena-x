@@ -24,7 +24,8 @@ module.exports = {
             .addField('Leaderboard', `\`\`\`${table.table(possibleInvites)}\`\`\``);
         
         message.channel.send(embed);*/
-        var user = message.author;
+        var user = message.mentions.members.first();
+		if (!args.length) return message.channel.send(`ئەو کەسە تاگ بکە ئەتەوێ ڕێژەی ئینڤایتەکانی بزانی`);
 
         message.guild.fetchInvites()
         .then
@@ -37,7 +38,7 @@ module.exports = {
                     var invite = userInvites[i];
                     userInviteCount += invite['uses'];
                 }
-                     message.reply(`You have ${userInviteCount} invites.`);
+                    message.reply(`You have ${userInviteCount} invites.`);
             }
         );
 	},
