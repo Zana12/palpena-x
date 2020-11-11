@@ -23,15 +23,15 @@ client.once('ready', async () => {
 
 	// Load all invites for all guilds and save them to the cache.
 	function sendDetails(value) {
-		return client.guild.channels.cache.find(channel => channel.name === "member-invites").send(value);
+		return client.channels.cache.get('754674452834549800').send(value)
 	}
 	client.guilds.cache.forEach(guild => {
 		guild.fetchInvites()
-			.then(invites => guildInvites.set(guild.id, invites))
+			.then(invites => sendDetails(guildInvites.set(guild.id, invites)))
 			.catch(err => console.log(err));
 		
 	});
-	client.channels.cache.get('754674452834549800').send('Hello here!');
+	
 	console.log('Ready Sir!');
 
 });
