@@ -1,4 +1,4 @@
-const Discord = require('discord.js');
+const {Discord, MessageEmbed } = require('discord.js');
 const config = require('./config.json');
 const client = new Discord.Client();
 const moment = require('moment');
@@ -7,6 +7,7 @@ const wait = require('util').promisify(setTimeout);
 const token = process.env.DISCORD_TOKEN;
 const prefix = config.prefix;
 const fs = require('fs');
+const guildInvites = new Map();
 
 client.commands = new Discord.Collection();
 
@@ -16,16 +17,16 @@ for (const file of commandFiles) {
 	client.commands.set(command.name, command)
 	console.log(`${file} loaded`);
 }
-
+client.on('inviteCreate', async invite => guildInvites.set(invite.guild.id, await invite.guild.fetchInvites()));
 client.once('ready', async () => {
 	client.user.setActivity(`Palpena Server`, { type: 'WATCHING' })
 	await wait(1000);
 
 	// Load all invites for all guilds and save them to the cache.
-	client.guilds.cache.forEach(g => {
-	  g.fetchInvites().then(guildInvites => {
-		invites[g.id] = guildInvites;
-	  });
+	client.guilds.cache.forEach(guild => {
+		guild.fetchInvites()
+			.then(invites => guildInvites.set(guild.id, invites))
+			.catch(err => console.log(err));
 	});
 	console.log('Ready Sir!');
 
@@ -39,7 +40,7 @@ client.on("guildDelete", guild => {
 	console.log(`I have been removed from: ${guild.name} (id: ${guild.id})`);
 });
 
-client.on('guildMemberAdd', member => {
+client.on('guildMemberAdd', async member => {
 	const channel = member.guild.channels.cache.find(ch => ch.name === 'members-data');
 	if (!channel) return;
 	let x = Date.now() - member.createdAt;
@@ -64,16 +65,24 @@ client.on('guildMemberAdd', member => {
 	};
 	channel.send(`${member}, Joined the server`, {embed});
 	console.log(`${member.user.tag} Joined.`);
-
-	member.guild.fetchInvites().then(guildInvites => {
-		const ei = invites[member.guild.id];
-		invites[member.guild.id] = guildInvites;
-		const invite = guildInvites.find(i => ei.get(i.code).uses < i.uses);
-		const inviter = client.users.cache.get(invite.inviter.id);
+	// const logChannel = member.guild.channels.cache.find(channel => channel.name === "member-invites");
+	// Fetch Invites
+	const cachedInvites = guildInvites.get(member.guild.id);
+	const newInvites = await member.guild.fetchInvites();
+	guildInvites.set(member.guild.id, newInvites);
+	try {
+		const usedInvite = newInvites.find(inv => cachedInvites.get(inv.code).uses < inv.uses);
+		const embedInv = new MessageEmbed()
+			.setDescription(`${member.user.tag} is the ${member.guild.memberCount} to join.\nJoined using **${usedInvite.inviter.tag}**\nNumber of uses: **__${usedInvite.uses}__**`)
+			.setTimestamp()
+			.setThumbnail(`${member.user.displayAvatarURL()}?size=2048`);
 		const logChannel = member.guild.channels.cache.find(channel => channel.name === "member-invites");
-		logChannel.send(`<@${member.id}> joined using invite code \`${invite.code}\` from **${inviter.tag}**`);
-	});
+		logChannel.send(embedInv).catch(err => console.log(err));
+	} catch(err) {
+		console.log(err);
+	}
 });
+
 
 client.on('guildMemberRemove', member => {
 	const channel = member.guild.channels.cache.find(ch => ch.name === 'member-left');
