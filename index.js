@@ -1,8 +1,7 @@
-const {Discord, MessageEmbed } = require('discord.js');
+const Discord = require('discord.js');
 const config = require('./config.json');
 const client = new Discord.Client();
 const moment = require('moment');
-const invites = {};
 const wait = require('util').promisify(setTimeout);
 const token = process.env.DISCORD_TOKEN;
 const prefix = config.prefix;
@@ -72,7 +71,7 @@ client.on('guildMemberAdd', async member => {
 	guildInvites.set(member.guild.id, newInvites);
 	try {
 		const usedInvite = newInvites.find(inv => cachedInvites.get(inv.code).uses < inv.uses);
-		const embedInv = new MessageEmbed()
+		const embedInv = new Discord.MessageEmbed()
 			.setDescription(`${member.user.tag} is the ${member.guild.memberCount} to join.\nJoined using **${usedInvite.inviter.tag}**\nNumber of uses: **__${usedInvite.uses}__**`)
 			.setTimestamp()
 			.setThumbnail(`${member.user.displayAvatarURL()}?size=2048`);
