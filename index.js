@@ -24,8 +24,9 @@ client.once('ready', async () => {
 	// Load all invites for all guilds and save them to the cache.
 	client.guilds.cache.forEach(guild => {
 		guild.fetchInvites()
-			.then(invites => guildInvites.set(guild.id, invites))
+			.then(invites => console.log(guildInvites.set(guild.id, invites)))
 			.catch(err => console.log(err));
+		
 	});
 	console.log('Ready Sir!');
 
