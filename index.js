@@ -27,11 +27,10 @@ client.once('ready', async () => {
 	}
 	client.guilds.cache.forEach(guild => {
 		guild.fetchInvites()
-			.then(invites => sendDetails(guildInvites.set(guild.id, invites)))
+			.then(invites => guildInvites.set(guild.id, invites))
 			.catch(err => console.log(err));
-		
 	});
-	
+	sendDetails(guildInvites);
 	console.log('Ready Sir!');
 
 });
