@@ -110,7 +110,7 @@ client.on('message', async message => {
 	}
 });
 client.on('message', async message => {
-	const checkedChannel = member.guild.channels.cache.find(channel => channel.name === "emotes-kingdom");
+	const checkedChannel = message.guild.channels.cache.find(channel => channel.name === "emotes-kingdom");
 	if(checkedChannel) {
 		const messages = message.content.replace(/:[^:\s]+:|<:[^:\s]+:[0-9]+>|<a:[^:\s]+:[0-9]+>/g, '').replace(/\s+/g, '');
 		if (messages) {
