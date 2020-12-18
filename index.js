@@ -20,17 +20,12 @@ client.on('inviteCreate', async invite => guildInvites.set(invite.guild.id, awai
 client.once('ready', async () => {
 	client.user.setActivity(`Palpena Server`, { type: 'WATCHING' })
 	await wait(1000);
-
 	// Load all invites for all guilds and save them to the cache.
-	function sendDetails(value) {
-		return client.channels.cache.get('754674452834549800').send(value)
-	}
 	client.guilds.cache.forEach(guild => {
 		guild.fetchInvites()
 			.then(invites => guildInvites.set(guild.id, invites))
 			.catch(err => console.log(err));
 	});
-	sendDetails(guildInvites);
 	console.log('Ready Sir!');
 
 });
@@ -70,20 +65,6 @@ client.on('guildMemberAdd', async member => {
 	console.log(`${member.user.tag} Joined.`);
 	// const logChannel = member.guild.channels.cache.find(channel => channel.name === "member-invites");
 	// Fetch Invites
-	const cachedInvites = guildInvites.get(member.guild.id);
-	const newInvites = await member.guild.fetchInvites();
-	guildInvites.set(member.guild.id, newInvites);
-	try {
-		const usedInvite = newInvites.find(inv => cachedInvites.get(inv.code).uses < inv.uses);
-		const embedInv = new Discord.MessageEmbed()
-			.setDescription(`${member.user.tag} is the ${member.guild.memberCount} to join.\nJoined using **${usedInvite.inviter.tag}**\nNumber of uses: **__${usedInvite.uses}__**`)
-			.setTimestamp()
-			.setThumbnail(`${member.user.displayAvatarURL()}?size=2048`);
-		const logChannel = member.guild.channels.cache.find(channel => channel.name === "member-invites");
-		logChannel.send(embedInv).catch(err => console.log(err));
-	} catch(err) {
-		console.log(err);
-	}
 });
 
 
@@ -126,6 +107,16 @@ client.on('message', async message => {
 	} catch (error) {
 		console.error(error);
 		message.reply('there was an error trying to execute that command!');
+	}
+});
+client.on('message', async message => {
+	const checkedChannel = member.guild.channels.cache.find(channel => channel.name === "emotes-kingdom");
+	if(checkedChannel) {
+		const messages = message.content.replace(/:[^:\s]+:|<:[^:\s]+:[0-9]+>|<a:[^:\s]+:[0-9]+>/g, '').replace(/\s+/g, '');
+		if (messages) {
+			message.delete().catch(console.error);
+			message.reply("گەمژە بەس ئیمۆجی ئەبێ بەکاربێنی لەم بەشە");
+		}
 	}
 });
 client.login(token);
