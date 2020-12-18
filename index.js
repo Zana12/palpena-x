@@ -109,14 +109,5 @@ client.on('message', async message => {
 		message.reply('there was an error trying to execute that command!');
 	}
 });
-client.on('message', async message => {
-	const checkedChannel = message.guild.channels.cache.find(channel => channel.name === "emotes-kingdom");
-	if(checkedChannel) {
-		const messages = message.content.replace(/:[^:\s]+:|<:[^:\s]+:[0-9]+>|<a:[^:\s]+:[0-9]+>/g, '').replace(/\s+/g, '');
-		if (messages) {
-			message.delete().catch(console.error);
-			message.reply("گەمژە بەس ئیمۆجی ئەبێ بەکاربێنی لەم بەشە");
-		}
-	}
-});
+
 client.login(token);
