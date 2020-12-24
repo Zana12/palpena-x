@@ -21,6 +21,7 @@ module.exports = {
               "icon_url": "https://palpena.com/assets/SQUAD.png"
             }
           };
+          channel.send({embed});
         } else if (scType === "y") {
           const embed = {
             "title": "Palpena Team is Live Now!",
@@ -35,10 +36,8 @@ module.exports = {
               "icon_url": "https://palpena.com/assets/SQUAD.png"
             }
           };
+          channel.send({embed});
         }
-        
-        message.delete(message.author);
-    channel.send({embed});
     // `<@&732904920306548806>,`,
 	},
 };
