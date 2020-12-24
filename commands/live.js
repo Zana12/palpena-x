@@ -38,6 +38,6 @@ module.exports = {
           };
           channel.send({embed});
         }
-        message.reply("I have added the Link to <#> Successfully! :white_check_mark:")
+        message.reply("I have added the Link to <#746416019274203308> Successfully! :white_check_mark:")
 	},
 };
