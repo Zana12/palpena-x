@@ -33,11 +33,11 @@ module.exports = {
             },
             "author": {
               "name": "Palpena Team",
-              "icon_url": "https://palpena.com/assets/SQUAD.png"
+              "icon_url": "https://palpena.com/dash/media/Palpena_White.png"
             }
           };
           channel.send({embed});
         }
-    // `<@&732904920306548806>,`,
+        message.reply("I have added the Link to <#> Successfully! :white_check_mark:")
 	},
 };
