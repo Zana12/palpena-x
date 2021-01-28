@@ -8,6 +8,9 @@ module.exports = {
             return message.channel.send(`Please write the nickname correctly!\n > If the nickname contains spaces please don't forget to replace the space with \`_\`.`);
         }
         const profileargument = message.mentions.users.first().id;
+        let userArray = message.content.split(" ");
+        let userArgs = userArray.slice(1);
+        let member = message.mentions.members.first() || message.guild.members.cache.get(userArgs[0]) || message.guild.members.cache.find(x => x.user.username.toLowerCase() === userArgs.slice(0).join(" ") || x.user.username === userArgs[0]) || message.member;
         const profile = await fetch('https://palpena.com/api?pro='+profileargument).then(response => response.json());
         const plp_name = profile[0][1];
         const plp_banner  = profile[0][2];
@@ -54,7 +57,7 @@ module.exports = {
         const embed = new Discord.MessageEmbed()
             embed.setColor('#6C5CE7')
             embed.setTitle(`**${plp_nickname}**`)
-            embed.setDescription(`${plp_ph_about}\n\n**Real Name:** ${plp_name} \n**Base Role:** ${plp_ph_role_emoji} ${plp_discord_role} \n**Location:** ${plp_location} \n**Profession:** ${plp_profession} \n**Badges:** ${plp_ph_vip} ${plp_ph_supporter} ${plp_ph_staff} \n**Birthday:** ${plp_ph_birthday}\n**PLPL Points:** ${plp_plpl_point}\n\n\n${plp_ph_facebook} ${plp_ph_instagram} ${plp_ph_tiktok} ${plp_ph_snapchat} ${plp_ph_twitter}`)
+            embed.setDescription(`${plp_ph_about}\n\n**Real Name:** ${plp_name} \n**Base Role:** ${plp_ph_role_emoji} ${plp_discord_role} \n**Location:** ${plp_location} \n**Profession:** ${plp_profession} \n**Badges:** ${plp_ph_vip} ${plp_ph_supporter} ${plp_ph_staff} \n**Birthday:** ${plp_ph_birthday}\n**PLPL Points:** ${plp_plpl_point}\n\n${plp_ph_facebook} ${plp_ph_instagram} ${plp_ph_tiktok} ${plp_ph_snapchat} ${plp_ph_twitter}\n\n**Roles:** <@&${member._roles.join('> <@&')}>`)
             embed.setThumbnail(`https://palpena.com/dash/media/profiles/pfp/${plp_profile_picture}`)
             embed.setImage(`https://palpena.com/dash/media/profiles/banners/${plp_banner}`)
             embed.setTimestamp()
