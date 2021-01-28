@@ -5,7 +5,7 @@ module.exports = {
 	description: 'Profiles Fetch from the Web',
 	async execute(message, args) {
         if (!args.length) {
-            return message.channel.send(`Please write the nickname correctly!\n > If the nickname contains spaces please don't forget to replace the space with \`_\`.`);
+            return message.channel.send(`> Mention the user first!`);
         }
         const profileargument = message.mentions.users.first().id;
         let userArray = message.content.split(" ");
