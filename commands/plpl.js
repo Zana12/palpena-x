@@ -8,7 +8,7 @@ module.exports = {
         let sup = "";
         let rank = 1;
         file.forEach((pro) => {
-            sup += `\`#${rank++}\`  | **${pro[8]}** | \`PTS:\` **${pro[19]}**\n`;
+            sup += `\`#${rank++}\`  | **${pro[8]}** | \`PTS:\` **${pro[20]}**\n`;
         });
         const embed = new Discord.MessageEmbed()
             embed.setColor('#6C5CE7')
