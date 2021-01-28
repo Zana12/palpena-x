@@ -57,7 +57,7 @@ module.exports = {
         const embed = new Discord.MessageEmbed()
             embed.setColor('#6C5CE7')
             embed.setTitle(`**${plp_nickname}**`)
-            embed.setDescription(`${plp_ph_about}\n\n**Real Name:** ${plp_name} \n**Base Role:** ${plp_ph_role_emoji} ${plp_discord_role} \n**Location:** ${plp_location} \n**Profession:** ${plp_profession} \n**Badges:** ${plp_ph_vip} ${plp_ph_supporter} ${plp_ph_staff} \n**Birthday:** ${plp_ph_birthday}\n**PLPL Points:** ${plp_plpl_point}\n\n${plp_ph_facebook} ${plp_ph_instagram} ${plp_ph_tiktok} ${plp_ph_snapchat} ${plp_ph_twitter}\n\n**Roles:** <@&${member._roles.join('> <@&')}>`)
+            embed.setDescription(`${plp_ph_about}\n\n**Real Name:** ${plp_name} \n**Base Role:** ${plp_ph_role_emoji} ${plp_discord_role} \n**Location:** ${plp_location} \n**Profession:** ${plp_profession} \n**Badges:** ${plp_ph_vip} ${plp_ph_supporter} ${plp_ph_staff} \n**Birthday:** ${plp_ph_birthday}\n**PLPL Points:** ${plp_plpl_point}\n\n${plp_ph_facebook} ${plp_ph_instagram} ${plp_ph_tiktok} ${plp_ph_snapchat} ${plp_ph_twitter}\n\n**__Roles:__**\n<@&${member._roles.join('> <@&')}>`)
             embed.setThumbnail(`https://palpena.com/dash/media/profiles/pfp/${plp_profile_picture}`)
             embed.setImage(`https://palpena.com/dash/media/profiles/banners/${plp_banner}`)
             embed.setTimestamp()
