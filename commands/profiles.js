@@ -7,7 +7,7 @@ module.exports = {
         if (!args.length) {
             return message.channel.send(`Please write the nickname correctly!\n > If the nickname contains spaces please don't forget to replace the space with \`_\`.`);
         }
-        const profileargument = args[0].replace('_', '%20');
+        const profileargument = message.mentions.users.first().id;
         const profile = await fetch('https://palpena.com/api?pro='+profileargument).then(response => response.json());
         const plp_name = profile[0][1];
         const plp_banner  = profile[0][2];
@@ -26,7 +26,6 @@ module.exports = {
         const plp_snapchat = profile[0][15];
         const plp_tiktok = profile[0][16];
         const plp_twitter = profile[0][17];
-        // const plp_discord_id = profile[0][18];
         const plp_setting_birthday = profile[0][19];
         const plp_plpl_point = profile[0][20];
         
