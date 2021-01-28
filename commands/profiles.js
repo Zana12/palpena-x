@@ -26,8 +26,9 @@ module.exports = {
         const plp_snapchat = profile[0][15];
         const plp_tiktok = profile[0][16];
         const plp_twitter = profile[0][17];
-        const plp_setting_birthday = profile[0][18];
-        const plp_plpl_point = profile[0][19];
+        // const plp_discord_id = profile[0][18];
+        const plp_setting_birthday = profile[0][19];
+        const plp_plpl_point = profile[0][20];
         
         let plp_ph_birthday = "";
         let plp_ph_about = "";
