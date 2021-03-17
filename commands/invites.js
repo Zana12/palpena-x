@@ -20,7 +20,7 @@ module.exports = {
 
         const embed = new Discord.MessageEmbed()
             .setColor(0xCB5A5E)
-            .setAuthor('PalpenaTeam Server Invites', 'https://palpena.com/assets/SQUAD.png')
+            .setAuthor('PalpenaTeam Server Invites', 'https://palpenateam.com/assets/SQUAD.png')
             .addField('Leaderboard', `\`\`\`${table.table(possibleInvites)}\`\`\``);
         
         message.channel.send(embed);*/

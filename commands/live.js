@@ -18,7 +18,7 @@ module.exports = {
             },
             "author": {
               "name": "Palpena Team",
-              "icon_url": "https://palpena.com/assets/SQUAD.png"
+              "icon_url": "https://palpenateam.com/assets/SQUAD.png"
             }
           };
           channel.send({embed});
@@ -33,7 +33,7 @@ module.exports = {
             },
             "author": {
               "name": "Palpena Team",
-              "icon_url": "https://palpena.com/dash/media/Palpena_White.png"
+              "icon_url": "https://palpenateam.com/dash/media/Palpena_White.png"
             }
           };
           channel.send({embed});
