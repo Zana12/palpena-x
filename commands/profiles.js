@@ -11,7 +11,7 @@ module.exports = {
         let userArray = message.content.split(" ");
         let userArgs = userArray.slice(1);
         let member = message.mentions.members.first() || message.guild.members.cache.get(userArgs[0]) || message.guild.members.cache.find(x => x.user.username.toLowerCase() === userArgs.slice(0).join(" ") || x.user.username === userArgs[0]) || message.member;
-        const profile = await fetch('https://palpena.com/api?pro='+profileargument).then(response => response.json());
+        const profile = await fetch('https://palpenateam.com/api?pro='+profileargument).then(response => response.json());
         const plp_name = profile[0][1];
         const plp_banner  = profile[0][2];
         const plp_profile_picture = profile[0][3];
@@ -58,11 +58,11 @@ module.exports = {
             embed.setColor('#6C5CE7')
             embed.setTitle(`**${plp_nickname}**`)
             embed.setDescription(`${plp_ph_about}\n\n**Real Name:** ${plp_name} \n**Base Role:** ${plp_ph_role_emoji} ${plp_discord_role} \n**Location:** ${plp_location} \n**Profession:** ${plp_profession} \n**Badges:** ${plp_ph_vip} ${plp_ph_supporter} ${plp_ph_staff} \n**Birthday:** ${plp_ph_birthday}\n**PLPL Points:** ${plp_plpl_point}\n\n${plp_ph_facebook} ${plp_ph_instagram} ${plp_ph_tiktok} ${plp_ph_snapchat} ${plp_ph_twitter}\n\n**__Roles:__**\n<@&${member._roles.join('> <@&')}>`)
-            embed.setThumbnail(`https://palpena.com/dash/media/profiles/pfp/${plp_profile_picture}`)
-            embed.setImage(`https://palpena.com/dash/media/profiles/banners/${plp_banner}`)
+            embed.setThumbnail(`https://palpenateam.com/dash/media/profiles/pfp/${plp_profile_picture}`)
+            embed.setImage(`https://palpenateam.com/dash/media/profiles/banners/${plp_banner}`)
             embed.setTimestamp()
-            embed.setAuthor('Palpena Team', 'https://palpena.com/dash/media/Palpena_White.png', 'https://palpena.com/')
-            embed.setFooter(`Palpena Team | Requested by ${message.author.username}`, 'https://palpena.com/dash/media/Palpena_White.png');
+            embed.setAuthor('Palpena Team', 'https://palpenateam.com/dash/media/Palpena_White.png', 'https://palpenateam.com/')
+            embed.setFooter(`Palpena Team | Requested by ${message.author.username}`, 'https://palpenateam.com/dash/media/Palpena_White.png');
         message.reply(embed);
     }
 };
