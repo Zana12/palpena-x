@@ -110,5 +110,13 @@ client.on('message', async message => {
 	}
 });
 
+client.on('message', async message => {
+	if(message.channel.id === '828006063197782027'){
+		if(message.content) {
+			const reactionEmoji = message.guild.emojis.cache.find(emoji => emoji.name === 'CheckMark');
+			message.react(reactionEmoji);
+		}
+	}
+});
 
 client.login(token);
